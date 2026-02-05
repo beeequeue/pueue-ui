@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "import", "oxc", "promise", "typescript", "unicorn", "vue"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "rules": {
+    "no-unsafe-type-assertion": "off",
+    "typescript/consistent-type-imports": [
+      "error",
+      {
+        "fixStyle": "inline-type-imports"
+      }
+    ],
+    "vue/block-order": [
+      "error",
+      {
+        "order": ["template", "script", "style"]
+      }
+    ],
+    "vue/html-self-closing": "off",
+    "vue/singleline-html-element-content-newline": "off"
+  }
+}

@@ -1,0 +1,29 @@
+catalog:
+  sonda: 0.10.1
+  vite: 8.0.0-beta.13
+
+overrides:
+  eslint: "-"
+
+patchedDependencies:
+  evlog: patches/evlog.patch
+
+publicHoistPattern:
+  - nitro*
+
+allowBuilds:
+  simple-git-hooks: false
+  vue-demi: false
+
+enableGlobalVirtualStore: false
+savePrefix: ""
+shellEmulator: true
+minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - "@oxc-project/*"
+  - "@rolldown/*"
+  - rolldown
+  - rolldown-plugin-dts
+  - tsdown
+  - unrun
+  - vite

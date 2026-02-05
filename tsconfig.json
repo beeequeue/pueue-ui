@@ -1,0 +1,28 @@
+{
+  "extends": ["@tsconfig/node24/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
+  "compilerOptions": {
+    // Output
+    "noEmit": true,
+
+    // Modules & resolution
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "esModuleInterop": false,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+
+    // Lessen strictness
+    "noImplicitReturns": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "exactOptionalPropertyTypes": false,
+
+    // Extra types
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["vite/client"]
+  },
+  "include": ["./"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "@pueue-ui/root",
+  "type": "module",
+  "private": true,
+  "author": "BeeeQueue <adam@haglund.dev>",
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": "^25"
+  },
+  "lint-staged": {
+    "*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,json,vue}": [
+      "oxlint --type-aware --type-check",
+      "oxfmt --no-error-on-unmatched-pattern"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "./node_modules/.bin/lint-staged"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint --type-aware --type-check --report-unused-disable-directives",
+    "test": "node --test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tanstack/vue-query": "5.92.9",
+    "evlog": "1.3.0",
+    "nitro": "3.0.1-alpha.2",
+    "vue": "3.6.0-beta.5"
+  },
+  "devDependencies": {
+    "@e18e/eslint-plugin": "0.1.4",
+    "@tsconfig/node24": "24.0.4",
+    "@tsconfig/strictest": "2.0.8",
+    "@types/node": "25.2.0",
+    "@unocss/preset-icons": "66.6.0",
+    "@unocss/preset-wind3": "66.6.0",
+    "@unocss/reset": "66.6.0",
+    "@unocss/transformer-compile-class": "66.6.0",
+    "@unocss/transformer-directives": "66.6.0",
+    "@unocss/vite": "66.6.0",
+    "@vitejs/plugin-vue": "6.0.4",
+    "lint-staged": "16.2.7",
+    "oxfmt": "0.28.0",
+    "oxlint": "1.43.0",
+    "oxlint-tsgolint": "0.11.4",
+    "simple-git-hooks": "2.13.1",
+    "sonda": "catalog:",
+    "vite": "catalog:"
+  }
+}

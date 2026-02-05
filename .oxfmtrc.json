@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "semi": false,
+  "experimentalSortImports": {
+    "type": "natural",
+    "internalPattern": ["^@/", "^~/", "^#[a-zA-Z0-9-]+/"],
+    "newlinesBetween": true,
+    "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "unknown"]
+  },
+  "experimentalSortPackageJson": false,
+  "ignorePatterns": ["pnpm-lock.yaml"]
+}
