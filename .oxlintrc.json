@@ -7,6 +7,7 @@
   },
   "rules": {
     "no-unsafe-type-assertion": "off",
+    "typescript/no-redundant-type-constituents": "off",
     "typescript/consistent-type-imports": [
       "error",
       {

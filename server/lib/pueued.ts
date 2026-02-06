@@ -8,6 +8,8 @@ import { encode } from "cbor-x/encode"
 import { useLogger } from "evlog"
 import { type H3Event } from "nitro/h3"
 
+import { type StatusResponse } from "./pueue.types.ts"
+
 const PACKET_SIZE = 1280
 
 const buildMessageParts = (data: Uint8Array): [Uint8Array, Uint8Array[]] => {
@@ -107,7 +109,7 @@ export const usePueued = (event: H3Event) => {
   const getStatus = async () => {
     const data = await sendMessage(await connection!, encode("Status"))
 
-    return decode(data)
+    return decode(data).Status as StatusResponse
   }
 
   return { getStatus } as const
