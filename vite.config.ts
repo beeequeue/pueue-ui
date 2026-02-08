@@ -33,7 +33,7 @@ export default defineConfig(() => ({
   plugins: [
     nitro(),
     unocss({
-      mode: "vue-scoped",
+      mode: "per-module",
       inspector: false,
     }),
     vue({

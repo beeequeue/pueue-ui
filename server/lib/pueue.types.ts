@@ -1,3 +1,29 @@
+export type StatusStashed = {
+  Stashed: {
+    enqueued_at: string
+  }
+}
+
+export type StatusQueued = {
+  Queued: {
+    enqueued_at: string
+  }
+}
+
+export type StatusRunning = {
+  Running: {
+    enqueued_at: string
+    start: string
+  }
+}
+
+export type StatusPaused = {
+  Paused: {
+    enqueued_at: string
+    start: string
+  }
+}
+
 export type StatusDone = {
   Done: {
     enqueued_at: string
@@ -7,14 +33,15 @@ export type StatusDone = {
   }
 }
 
-export type Status = StatusDone
+export type Status = StatusStashed | StatusQueued | StatusRunning | StatusPaused | StatusDone
+export type StatusString = keyof Status
 
-export type Task = {
+export type Task<S extends Status = Status> = {
   id: number
   priority: number
-  group: string
+  group: string | null
   label: string | null
-  status: Status
+  status: S
   command: string
   original_command: string
   dependencies: unknown[]
@@ -28,7 +55,7 @@ export type StatusResponse = {
   groups: Record<
     string,
     {
-      status: "Running" | string
+      status: "Running" | "Paused" | string
       parrallel_tasks: number
     }
   >
