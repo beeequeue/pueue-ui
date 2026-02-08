@@ -8,11 +8,15 @@
       <Tag v-if="task.label != null" prefix="L" color="yellow">{{ task.label }}</Tag>
 
       <span class="ml-auto flex gap-1">
+        <Tag v-if="startedAt != null && endedAt == null">
+          <Time relativeTo hideAffix :datetime="startedAt" />
+        </Tag>
         <Tag v-if="duration" :color="statusColor">
+          took&nbsp;
           <Duration :datetime="duration" />
         </Tag>
         <Tag v-if="endedAt">
-          <Time relative :datetime="endedAt" />
+          <Time relativeTo :datetime="endedAt" />
         </Tag>
       </span>
     </div>
@@ -29,6 +33,7 @@ import Duration from "./Duration.vue"
 import Time from "./Time.vue"
 
 const { task } = defineProps<{ task: Task }>()
+const taskStatus = computed(() => getTaskStatus(task))
 
 const statusColors = {
   Paused: "yellow",
@@ -36,8 +41,9 @@ const statusColors = {
   Done: "green",
   Failed: "red",
 } satisfies Record<StatusString, string>
-const statusColor = computed(() => statusColors[getTaskStatus(task)])
+const statusColor = computed(() => statusColors[taskStatus.value])
 
+const startedAt = computed(() => getTaskStart(task))
 const endedAt = computed(() => getTaskEnd(task))
 const endedRelativeText = computed(() =>
   endedAt.value != null

@@ -1,30 +1,41 @@
 <template>
   <time :datetime="datetime.toString()">
-    {{ formatted }}
-    <span v-if="relative">ago</span>
+    {{ formattedString }}
   </time>
 </template>
 
 <script setup vapor lang="ts">
-import { computed, watch } from "vue"
+import { computed } from "vue"
 
 import { globalNow, roundDuration } from "../utils/temporal.ts"
 
-const { datetime, relative } = defineProps<{
+const { datetime, relativeTo, hideAffix } = defineProps<{
   datetime: Temporal.ZonedDateTime
-  relative?: boolean
+  relativeTo?: Temporal.ZonedDateTime | boolean
+  hideAffix?: boolean
 }>()
 
 const converted = computed(() => {
-  return relative
-    ? roundDuration(globalNow.value.until(datetime)).abs()
-    : datetime.round({ smallestUnit: "seconds" })
+  if (!relativeTo) {
+    return datetime.round({ smallestUnit: "seconds" })
+  }
+
+  const relativeDate = relativeTo === true ? globalNow.value : relativeTo
+  return roundDuration(relativeDate.until(datetime))
 })
-const formatted = computed(() =>
-  converted.value.toLocaleString("en-GB", {
+const formattedDate = computed(() => {
+  const actualDate = relativeTo ? (converted.value as Temporal.Duration).abs() : converted.value
+  return actualDate.toLocaleString("en-GB", {
     style: "narrow",
     dateStyle: "short",
     timeStyle: "short",
-  }),
-)
+  })
+})
+
+const formattedString = computed(() => {
+  if (hideAffix || !relativeTo) return formattedDate.value
+
+  const { sign } = converted.value as Temporal.Duration
+  return sign === 1 ? `in\xA0${formattedDate.value}` : `${formattedDate.value}\xA0ago`
+})
 </script>
