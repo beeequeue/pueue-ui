@@ -34,7 +34,11 @@ export type StatusDone = {
 }
 
 export type Status = StatusStashed | StatusQueued | StatusRunning | StatusPaused | StatusDone
-export type StatusString = keyof Status
+export type StatusString = keyof (StatusStashed &
+  StatusQueued &
+  StatusRunning &
+  StatusPaused &
+  StatusDone)
 
 export type Task<S extends Status = Status> = {
   id: number
