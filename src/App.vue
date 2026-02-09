@@ -18,9 +18,11 @@ import TaskCard from "./components/TaskCard.vue"
 import { isTaskDone, isTaskRunning } from "./utils.ts"
 
 const data = ref<StatusBody | null>(null)
-fetch("/api/status")
-  .then((res) => res.json())
-  .then((json) => (data.value = json))
+setInterval(() => {
+  fetch("/api/status")
+    .then((res) => res.json())
+    .then((json) => (data.value = json))
+}, 2000)
 
 const tasks = computed(() => data.value?.tasks ?? [])
 const runningTasks = computed(() =>
