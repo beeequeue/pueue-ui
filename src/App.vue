@@ -13,8 +13,9 @@
 
 <script setup vapor lang="ts">
 import { computed, ref } from "vue"
-import TaskCard from "./components/TaskCard.vue"
 import type { StatusBody } from "../server/types/api.types.ts"
+import TaskCard from "./components/TaskCard.vue"
+import { isTaskDone, isTaskRunning } from "./utils.ts"
 
 const data = ref<StatusBody | null>(null)
 fetch("/api/status")
@@ -22,6 +23,12 @@ fetch("/api/status")
   .then((json) => (data.value = json))
 
 const tasks = computed(() => data.value?.tasks ?? [])
-const runningTasks = computed(() => tasks.value.filter((j) => j.status.type === "Running"))
-const doneTasks = computed(() => tasks.value.filter((j) => j.status.type === "Done"))
+const runningTasks = computed(() =>
+  tasks.value
+    .filter(isTaskRunning)
+    .toSorted((a, b) => b.status.start.localeCompare(a.status.start)),
+)
+const doneTasks = computed(() =>
+  tasks.value.filter(isTaskDone).toSorted((a, b) => b.status.start.localeCompare(a.status.start)),
+)
 </script>

@@ -1,9 +1,9 @@
 <template>
   <div
-    class=":uno-tag: flex-inline py-.5 b-1 b-solid text-#eee items-center justify-center rounded-lg px-1.5 text-xs"
+    class=":uno-tag: flex-inline py-.5 b-1 b-solid text-#eee items-center justify-center rounded-lg px-1.5 text-sm"
     :class="colorClasses"
   >
-    <span v-if="prefix" class="mr-1 text-xs">{{ prefix }}</span>
+    <span v-if="prefix" class="mr-1">{{ prefix }}</span>
     <slot />
   </div>
 </template>

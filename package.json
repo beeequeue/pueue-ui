@@ -34,6 +34,8 @@
   },
   "devDependencies": {
     "@e18e/eslint-plugin": "0.1.4",
+    "@iconify-json/lucide": "1.2.89",
+    "@iconify-json/svg-spinners": "1.2.4",
     "@tsconfig/node24": "24.0.4",
     "@tsconfig/strictest": "2.0.8",
     "@types/node": "25.2.1",

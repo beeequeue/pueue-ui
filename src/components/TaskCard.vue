@@ -1,5 +1,5 @@
 <template>
-  <div class="b-2 b-solid b-warmgray-700 rounded-lg px-3 py-2">
+  <div class=":uno-taskcard: b-2 b-solid b-warmgray-700 rounded-lg px-3 py-2">
     <div class="mb-1 flex gap-1">
       <Tag prefix="ID" :color="statusColor">{{ task.id }}</Tag>
       <Tag v-if="task.group != null && task.group !== 'default'" prefix="G" color="blue">
@@ -8,9 +8,12 @@
       <Tag v-if="task.label != null" prefix="L" color="yellow">{{ task.label }}</Tag>
 
       <span class="ml-auto flex gap-1">
-        <Tag v-if="startedAt != null && endedAt == null">
+        <!-- Running -->
+        <Tag v-if="startedAt != null && endedAt == null" color="blue">
+          <i class="i-svg-spinners:12-dots-scale-rotate mr-1" />
           <Time relativeTo hideAffix :datetime="startedAt" />
         </Tag>
+        <!-- Done -->
         <Tag v-if="duration" :color="statusColor">
           took&nbsp;
           <Duration :datetime="duration" />

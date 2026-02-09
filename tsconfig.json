@@ -10,9 +10,6 @@
     "resolveJsonModule": true,
     "esModuleInterop": false,
     "allowImportingTsExtensions": true,
-    "paths": {
-      "~/*": ["./src/*"]
-    },
 
     // Lessen strictness
     "noImplicitReturns": false,
