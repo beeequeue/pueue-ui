@@ -17,9 +17,9 @@ const { prefix, color } = defineProps<{
 }>()
 
 const colorClasses = computed(() => ({
-  "b-warmgray-700 bg-warmgray-900": color == null,
-  "b-red-700 bg-red-950": color === "red",
-  "b-blue-700 bg-blue-950": color === "blue",
-  "b-green-700 bg-green-950": color === "green",
+  ":uno-tag-gray: b-warmgray-700 bg-warmgray-900": color == null,
+  ":uno-tag-red: b-red-700 bg-red-950": color === "red",
+  ":uno-tag-blue: b-blue-700 bg-blue-950": color === "blue",
+  ":uno-tag-green: b-green-700 bg-green-950": color === "green",
 }))
 </script>
