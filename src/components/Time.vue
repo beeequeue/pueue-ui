@@ -9,10 +9,11 @@ import { computed } from "vue"
 
 import { globalNow, roundDuration } from "../utils/temporal.ts"
 
-const { datetime, relativeTo, hideAffix } = defineProps<{
+const { datetime, relativeTo, hideAffix, rounding } = defineProps<{
   datetime: Temporal.ZonedDateTime
   relativeTo?: Temporal.ZonedDateTime | boolean
   hideAffix?: boolean
+  rounding?: Temporal.SmallestUnit<Temporal.TimeUnit>
 }>()
 
 const converted = computed(() => {
@@ -21,7 +22,8 @@ const converted = computed(() => {
   }
 
   const relativeDate = relativeTo === true ? globalNow.value : relativeTo
-  return roundDuration(relativeDate.until(datetime))
+  const until = relativeDate.until(datetime)
+  return rounding ? until.round({ smallestUnit: rounding }) : roundDuration(until)
 })
 const formattedDate = computed(() => {
   const actualDate = relativeTo ? (converted.value as Temporal.Duration).abs() : converted.value

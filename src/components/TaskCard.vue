@@ -11,7 +11,7 @@
         <!-- Running -->
         <Tag v-if="startedAt != null && endedAt == null" color="blue">
           <i class="i-svg-spinners:12-dots-scale-rotate mr-1" />
-          <Time relativeTo hideAffix :datetime="startedAt" />
+          <Time relativeTo hideAffix rounding="seconds" :datetime="startedAt" />
         </Tag>
         <!-- Done -->
         <Tag v-if="duration" :color="statusColor">
