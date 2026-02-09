@@ -1,4 +1,3 @@
-import { VueQueryPlugin } from "@tanstack/vue-query"
 import { createVaporApp } from "vue"
 
 if (!("Temporal" in globalThis)) {
@@ -9,5 +8,4 @@ if (!("Temporal" in globalThis)) {
 import App from "./App.vue"
 
 const app = createVaporApp(App)
-app.use(VueQueryPlugin)
 app.mount("#app")

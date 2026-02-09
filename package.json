@@ -25,7 +25,6 @@
     "typecheck": "vue-tsc"
   },
   "dependencies": {
-    "@tanstack/vue-query": "5.92.9",
     "@vueuse/core": "14.2.0",
     "cbor-x": "1.6.0",
     "evlog": "1.4.0",

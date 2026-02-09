@@ -63,5 +63,3 @@ const duration = computed(() =>
   isTaskDone(task) ? getTaskStart(task).until(endedAt.value!) : null,
 )
 </script>
-
-<style scoped></style>
