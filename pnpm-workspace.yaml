@@ -12,8 +12,8 @@ enableGlobalVirtualStore: false
 minimumReleaseAge: 1440
 
 minimumReleaseAgeExclude:
-  - '@oxc-project/*'
-  - '@rolldown/*'
+  - "@oxc-project/*"
+  - "@rolldown/*"
   - rolldown
   - rolldown-plugin-dts
   - tsdown
@@ -21,8 +21,8 @@ minimumReleaseAgeExclude:
   - vite
 
 overrides:
-  eslint: '-'
-  vite: 'catalog:'
+  eslint: "-"
+  vite: "catalog:"
 
 patchedDependencies:
   evlog: patches/evlog.patch
@@ -30,6 +30,6 @@ patchedDependencies:
 publicHoistPattern:
   - nitro*
 
-savePrefix: ''
+savePrefix: ""
 
 shellEmulator: true

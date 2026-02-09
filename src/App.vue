@@ -14,17 +14,17 @@
 <script setup vapor lang="ts">
 import { computed } from "vue"
 import { useQuery } from "@tanstack/vue-query"
-import type { StatusResponse } from "../server/lib/pueue.types.ts"
 import TaskCard from "./components/TaskCard.vue"
+import type { StatusBody } from "../server/types/api.types.ts"
 
-const { data } = useQuery<StatusResponse>({
+const { data } = useQuery<StatusBody>({
   queryKey: ["status"],
   queryFn: () => fetch("/api/status").then((r) => r.json()),
 })
 
-const tasks = computed(() => Object.values(data.value?.tasks ?? {}))
-const runningTasks = computed(() => tasks.value.filter((j) => "Running" in j.status))
-const doneTasks = computed(() => tasks.value.filter((j) => "Done" in j.status))
+const tasks = computed(() => data.value?.tasks ?? [])
+const runningTasks = computed(() => tasks.value.filter((j) => j.status.type === "Running"))
+const doneTasks = computed(() => tasks.value.filter((j) => j.status.type === "Done"))
 </script>
 
 <style scoped></style>

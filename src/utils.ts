@@ -1,47 +1,41 @@
 import type {
-  Status,
-  StatusDone,
-  StatusPaused,
-  StatusQueued,
-  StatusRunning,
-  StatusStashed,
-  StatusString,
   Task,
-} from "../server/lib/pueue.types.ts"
+  TaskStatus,
+  TaskStatusDone,
+  TaskStatusPaused,
+  TaskStatusQueued,
+  TaskStatusRunning,
+  TaskStatusStashed,
+} from "../server/types/api.types.ts"
 
 const buildPredicate =
-  <StatusName extends Status>(name: keyof StatusName) =>
-  (task: Task): task is Task<StatusName> =>
-    name in task.status
+  <Status extends TaskStatus>(name: Status["type"]) =>
+  (task: Task): task is Task<Status> =>
+    task.status.type === name
 
-export const isTaskStashed = buildPredicate<StatusStashed>("Stashed")
-export const isTaskQueued = buildPredicate<StatusQueued>("Queued")
-export const isTaskRunning = buildPredicate<StatusRunning>("Running")
-export const isTaskPaused = buildPredicate<StatusPaused>("Paused")
-export const isTaskDone = buildPredicate<StatusDone>("Done")
+export const isTaskStashed = buildPredicate<TaskStatusStashed>("Stashed")
+export const isTaskQueued = buildPredicate<TaskStatusQueued>("Queued")
+export const isTaskRunning = buildPredicate<TaskStatusRunning>("Running")
+export const isTaskPaused = buildPredicate<TaskStatusPaused>("Paused")
+export const isTaskDone = buildPredicate<TaskStatusDone>("Done")
+export const isTaskSuccess = (task: Task) => (task.status as TaskStatusDone)?.result === "Success"
+export const isTaskFailed = (task: Task) =>
+  typeof (task.status as TaskStatusDone)?.result === "string" &&
+  (task.status as TaskStatusDone)?.result === "Failed"
 
-export const getTaskStatus = (task: Task): StatusString =>
-  Object.keys(task.status)[0] as StatusString
-
-// TODO: use browser timezone
-export const getTaskStart = <S extends Status>(
+export const getTaskStart = <S extends TaskStatus>(
   task: Task<S>,
-): S extends StatusDone | StatusRunning | StatusPaused
+): S extends TaskStatusDone | TaskStatusRunning | TaskStatusPaused
   ? Temporal.ZonedDateTime
   : Temporal.ZonedDateTime | null => {
-  const start =
-    (task.status as StatusDone)?.Done?.start ??
-    (task.status as StatusRunning)?.Running?.start ??
-    (task.status as StatusPaused)?.Paused?.start
-  if (start == null) return null!
+  if (!isTaskDone(task) && !isTaskRunning(task) && !isTaskPaused(task)) return null!
 
-  return Temporal.Instant.from(start).toZonedDateTimeISO("Europe/Stockholm")
+  return Temporal.Instant.from(task.status.start).toZonedDateTimeISO(Temporal.Now.timeZoneId())
 }
-export const getTaskEnd = <S extends Status>(
+export const getTaskEnd = <S extends TaskStatus>(
   task: Task<S>,
-): S extends StatusDone ? Temporal.ZonedDateTime : Temporal.ZonedDateTime | null => {
-  const end = (task.status as StatusDone)?.Done?.end
-  if (end == null) return null!
+): S extends TaskStatusDone ? Temporal.ZonedDateTime : Temporal.ZonedDateTime | null => {
+  if (!isTaskDone(task)) return null!
 
-  return Temporal.Instant.from(end).toZonedDateTimeISO("Europe/Stockholm")
+  return Temporal.Instant.from(task.status.end).toZonedDateTimeISO(Temporal.Now.timeZoneId())
 }

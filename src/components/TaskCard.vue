@@ -26,22 +26,31 @@
 
 <script setup vapor lang="ts">
 import { computed } from "vue"
-import { type StatusString, type Task } from "../../server/lib/pueue.types.ts"
 import Tag from "./Tag.vue"
-import { getTaskEnd, getTaskStart, getTaskStatus, isTaskDone } from "../utils.ts"
+import { getTaskEnd, getTaskStart, isTaskDone } from "../utils.ts"
 import Duration from "./Duration.vue"
 import Time from "./Time.vue"
+import type {
+  Task,
+  TaskResult,
+  TaskStatusDone,
+  TaskStatusName,
+} from "../../server/types/api.types.ts"
 
 const { task } = defineProps<{ task: Task }>()
-const taskStatus = computed(() => getTaskStatus(task))
+const status = computed(() => task.status.type)
+const result = computed<TaskResult | null>(() => (task.status as TaskStatusDone).result ?? null)
 
 const statusColors = {
-  Paused: "yellow",
-  Running: "blue",
-  Done: "green",
-  Failed: "red",
-} satisfies Record<StatusString, string>
-const statusColor = computed(() => statusColors[taskStatus.value])
+  Paused: "yellow" as const,
+  Stashed: "yellow" as const,
+  Running: "blue" as const,
+  Success: "green" as const,
+  Failed: "red" as const,
+} satisfies { [key in TaskStatusName | TaskResult]?: string }
+const statusColor = computed(
+  () => statusColors[(result.value ?? status.value) as keyof typeof statusColors],
+)
 
 const startedAt = computed(() => getTaskStart(task))
 const endedAt = computed(() => getTaskEnd(task))
