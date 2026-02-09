@@ -16,7 +16,7 @@
         <!-- Done -->
         <Tag v-if="duration" :color="statusColor">
           took&nbsp;
-          <Duration :datetime="duration" />
+          <Duration :duration="duration" />
         </Tag>
         <Tag v-if="endedAt">
           <Time relativeTo :datetime="endedAt" />
