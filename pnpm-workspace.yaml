@@ -4,8 +4,11 @@ allowBuilds:
   vue-demi: false
 
 catalog:
+  "@vue/compiler-sfc": 3.6.0-beta.5
+  "@vue/compiler-ssr": 3.6.0-beta.5
   sonda: 0.10.1
   vite: 8.0.0-beta.13
+  vue: 3.6.0-beta.5
 
 enableGlobalVirtualStore: false
 
@@ -21,8 +24,12 @@ minimumReleaseAgeExclude:
   - vite
 
 overrides:
+  "@vue/compiler-sfc": 3.6.0-beta.5
+  "@vue/compiler-ssr": 3.6.0-beta.5
+  "@vue-macros/common": "-"
   eslint: "-"
   vite: "catalog:"
+  vue: 3.6.0-beta.5
 
 patchedDependencies:
   evlog: patches/evlog.patch

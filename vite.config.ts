@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue"
 import { nitro } from "nitro/vite"
 import sonda from "sonda/vite"
 import { defineConfig } from "vite"
+import vueRouter from "vue-router/vite"
 
 export default defineConfig(() => ({
   experimental: { enableNativePlugin: true },
@@ -40,6 +41,9 @@ export default defineConfig(() => ({
       script: { vapor: true },
       template: { vapor: true },
       features: { optionsAPI: false },
+    }),
+    vueRouter({
+      dts: "src/route-map.d.ts",
     }),
     sonda({ enabled: !!process.env.ANALYZE, deep: true, open: "html", sources: true }),
   ],
