@@ -23,7 +23,10 @@
         </Tag>
       </span>
     </div>
-    <pre class="inline! w-auto">{{ task.command }}</pre>
+
+    <pre class="my-2 font-bold">{{ task.command }}</pre>
+
+    <pre class="m-0 text-gray-500">{{ task.path.replace(/\\/g, "/") }}</pre>
   </div>
 </template>
 
