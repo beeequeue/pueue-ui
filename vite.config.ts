@@ -23,6 +23,7 @@ export default defineConfig(() => ({
 
     compatibilityDate: "2026-02-05" as const,
     minify: true,
+    sourcemap: true,
 
     experimental: {
       openAPI: true,

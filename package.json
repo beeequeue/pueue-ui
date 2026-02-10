@@ -21,6 +21,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint --type-aware --type-check --report-unused-disable-directives",
+    "start": "node .output/server/index.mjs",
     "test": "node --test",
     "typecheck": "vue-tsc"
   },
