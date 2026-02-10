@@ -11,6 +11,9 @@ export default defineConfig(() => ({
   build: {
     sourcemap: true,
   },
+  optimizeDeps: {
+    include: ["@vueuse/core"],
+  },
 
   nitro: {
     serverDir: "./server",
