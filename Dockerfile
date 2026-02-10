@@ -10,7 +10,6 @@ ENV NODE_ENV=production
 FROM base AS deps
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY patches/ patches/
 
 RUN npm i -g npm@latest
 RUN npm i -g --force corepack@latest

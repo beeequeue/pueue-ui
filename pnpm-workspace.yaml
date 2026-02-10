@@ -6,7 +6,6 @@ allowBuilds:
 catalog:
   "@vue/compiler-sfc": 3.6.0-beta.5
   "@vue/compiler-ssr": 3.6.0-beta.5
-  sonda: 0.10.1
   vite: 8.0.0-beta.13
   vue: 3.6.0-beta.5
 
@@ -29,9 +28,6 @@ overrides:
   eslint: "-"
   vite: "catalog:"
   vue: "catalog:"
-
-patchedDependencies:
-  evlog: patches/evlog.patch
 
 publicHoistPattern:
   - nitro*

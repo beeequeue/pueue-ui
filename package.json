@@ -28,7 +28,7 @@
   "dependencies": {
     "@vueuse/core": "14.2.0",
     "cbor-x": "1.6.0",
-    "evlog": "1.4.0",
+    "evlog": "1.6.0",
     "nitro": "3.0.1-alpha.2",
     "temporal-polyfill": "0.3.0",
     "vue": "catalog:"
@@ -39,7 +39,7 @@
     "@iconify-json/svg-spinners": "1.2.4",
     "@tsconfig/node24": "24.0.4",
     "@tsconfig/strictest": "2.0.8",
-    "@types/node": "25.2.1",
+    "@types/node": "25.2.2",
     "@unocss/preset-icons": "66.6.0",
     "@unocss/preset-wind3": "66.6.0",
     "@unocss/reset": "66.6.0",
@@ -50,9 +50,9 @@
     "lint-staged": "16.2.7",
     "oxfmt": "0.28.0",
     "oxlint": "1.43.0",
-    "oxlint-tsgolint": "0.11.4",
+    "oxlint-tsgolint": "0.11.5",
     "simple-git-hooks": "2.13.1",
-    "sonda": "catalog:",
+    "sonda": "0.10.2",
     "vite": "catalog:",
     "vue-router": "https://pkg.pr.new/vue-router@2509",
     "vue-tsc": "3.2.4"
