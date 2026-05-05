@@ -14,6 +14,7 @@ dedupePeers: true
 overrides:
   "@vue/compiler-sfc": "catalog:"
   "@vue/compiler-ssr": "catalog:"
+  rolldown: 1.0.0-rc.18
   vue: "catalog:"
 
 patchedDependencies:
