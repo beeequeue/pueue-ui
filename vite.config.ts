@@ -5,9 +5,7 @@ import sonda from "sonda/vite"
 import { defineConfig } from "vite"
 import vueRouter from "vue-router/vite"
 
-export default defineConfig(() => ({
-  experimental: { enableNativePlugin: true },
-
+export default defineConfig({
   build: {
     sourcemap: true,
   },
@@ -51,4 +49,4 @@ export default defineConfig(() => ({
     }),
     sonda({ enabled: !!process.env.ANALYZE, deep: true, open: "html", sources: true }),
   ],
-}))
+})

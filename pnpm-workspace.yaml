@@ -3,30 +3,17 @@ allowBuilds:
   simple-git-hooks: false
   vue-demi: false
 
+dedupePeers: true
+dedupePeerDependents: true
+
 catalog:
-  "@vue/compiler-sfc": 3.6.0-beta.5
-  "@vue/compiler-ssr": 3.6.0-beta.5
-  vite: 8.0.0-beta.13
-  vue: 3.6.0-beta.5
-
-enableGlobalVirtualStore: false
-
-minimumReleaseAge: 1440
-
-minimumReleaseAgeExclude:
-  - "@oxc-project/*"
-  - "@rolldown/*"
-  - rolldown
-  - rolldown-plugin-dts
-  - tsdown
-  - unrun
-  - vite
+  "@vue/compiler-sfc": 3.6.0-beta.10
+  "@vue/compiler-ssr": 3.6.0-beta.10
+  vue: 3.6.0-beta.10
 
 overrides:
   "@vue/compiler-sfc": "catalog:"
   "@vue/compiler-ssr": "catalog:"
-  eslint: "-"
-  vite: "catalog:"
   vue: "catalog:"
 
 publicHoistPattern:
