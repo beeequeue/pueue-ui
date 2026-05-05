@@ -13,7 +13,7 @@ const { datetime, relativeTo, hideAffix, rounding } = defineProps<{
   datetime: Temporal.ZonedDateTime
   relativeTo?: Temporal.ZonedDateTime | boolean
   hideAffix?: boolean
-  rounding?: Temporal.SmallestUnit<Temporal.TimeUnit>
+  rounding?: Temporal.PluralizeUnit<Temporal.TimeUnit>
 }>()
 
 const converted = computed(() => {
@@ -26,9 +26,13 @@ const converted = computed(() => {
   return rounding ? until.round({ smallestUnit: rounding }) : roundDuration(until)
 })
 const formattedDate = computed(() => {
-  const actualDate = relativeTo ? (converted.value as Temporal.Duration).abs() : converted.value
-  return actualDate.toLocaleString("en-GB", {
-    style: "narrow",
+  if ("abs" in converted.value) {
+    return converted.value.abs().toLocaleString("en-GB", {
+      style: "narrow",
+    })
+  }
+
+  return converted.value.toLocaleString("en-GB", {
     dateStyle: "short",
     timeStyle: "short",
   })

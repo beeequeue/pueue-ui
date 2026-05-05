@@ -13,7 +13,6 @@ const rounded = computed(() => duration.round({ smallestUnit: "milliseconds" }))
 const formatted = computed(() =>
   rounded.value.toLocaleString("en-GB", {
     style: "narrow",
-    numeric: "always",
   }),
 )
 </script>

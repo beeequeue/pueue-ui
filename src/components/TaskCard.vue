@@ -62,11 +62,11 @@ const statusColor = computed(
 
 const startedAt = computed(() => getTaskStart(task))
 const endedAt = computed(() => getTaskEnd(task))
-const endedRelativeText = computed(() =>
-  endedAt.value != null
-    ? Temporal.Now.zonedDateTimeISO().until(endedAt.value).toLocaleString()
-    : null,
-)
+// const endedRelativeText = computed(() =>
+//   endedAt.value != null
+//     ? Temporal.Now.zonedDateTimeISO().until(endedAt.value).toLocaleString()
+//     : null,
+// )
 const duration = computed(() =>
   isTaskDone(task) ? getTaskStart(task).until(endedAt.value!) : null,
 )

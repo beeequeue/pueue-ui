@@ -12,7 +12,7 @@ export const relativeToNow = (date: Temporal.ZonedDateTime): string =>
 
 export const roundDuration = (duration: Temporal.Duration) => {
   const absolute = duration.abs()
-  let unit: Temporal.SmallestUnit<Temporal.TimeUnit | Temporal.DateUnit> = "milliseconds"
+  let unit: Temporal.PluralizeUnit<Temporal.TimeUnit | Temporal.DateUnit> = "milliseconds"
 
   if (absolute.total("seconds") > 10 && absolute.total("minutes") < 30) {
     unit = "seconds"
