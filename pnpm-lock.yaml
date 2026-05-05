@@ -29,9 +29,9 @@ importers:
       nitro:
         specifier: 3.0.260429-beta
         version: 3.0.260429-beta(chokidar@5.0.0)(jiti@2.6.1)(vite@8.0.10)
-      temporal-polyfill:
-        specifier: 0.3.0
-        version: 0.3.0
+      temporal-polyfill-lite:
+        specifier: 0.3.5
+        version: 0.3.5
       vue:
         specifier: 3.6.0-beta.10
         version: 3.6.0-beta.10(typescript@6.0.3)
@@ -1386,11 +1386,8 @@ packages:
     resolution: {integrity: sha512-H+ue8Zo4vJmV2nRjpx86P35lzwDT3nItnIsocgumgr0hHMQ+ZGq5vrERg9kJBo5AWGmxZDhzDo+WVIJqkB0cGA==}
     engines: {node: '>=16'}
 
-  temporal-polyfill@0.3.0:
-    resolution: {integrity: sha512-qNsTkX9K8hi+FHDfHmf22e/OGuXmfBm9RqNismxBrnSmZVJKegQ+HYYXT+R7Ha8F/YSm2Y34vmzD4cxMu2u95g==}
-
-  temporal-spec@0.3.0:
-    resolution: {integrity: sha512-n+noVpIqz4hYgFSMOSiINNOUOMFtV5cZQNCmmszA6GiVFVRt3G7AqVyhXjhCSmowvQn+NsGn+jMDMKJYHd3bSQ==}
+  temporal-polyfill-lite@0.3.5:
+    resolution: {integrity: sha512-np3EcFbuGJrJ8fp3rKTwpvfvPlkh54IY873Xh+5133Pq1QQy1mkNXrDmJjjZ35dhQkrJpVx8RwaNWt0189iDfg==}
 
   tinyexec@1.1.2:
     resolution: {integrity: sha512-dAqSqE/RabpBKI8+h26GfLq6Vb3JVXs30XYQjdMjaj/c2tS8IYYMbIzP599KtRj7c57/wYApb3QjgRgXmrCukA==}
@@ -2698,11 +2695,7 @@ snapshots:
     dependencies:
       copy-anything: 4.0.5
 
-  temporal-polyfill@0.3.0:
-    dependencies:
-      temporal-spec: 0.3.0
-
-  temporal-spec@0.3.0: {}
+  temporal-polyfill-lite@0.3.5: {}
 
   tinyexec@1.1.2: {}
 
