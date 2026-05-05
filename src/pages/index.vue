@@ -13,6 +13,7 @@
 
 <script setup vapor lang="ts">
 import { computed, ref } from "vue"
+
 import type { StatusBody } from "../../server/types/api.types.ts"
 import TaskCard from "../components/TaskCard.vue"
 import { isTaskDone, isTaskRunning } from "../utils.ts"

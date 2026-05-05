@@ -6,7 +6,7 @@ an experimental web ui for [pueue](https://github.com/Nukesor/pueue)
 
 > [!CAUTION]
 > the api is completely unsafe and CANNOT not be made available over the internet,
-unless you want people to be able to run arbitrary commands on your machine.
+> unless you want people to be able to run arbitrary commands on your machine.
 
 ## status
 

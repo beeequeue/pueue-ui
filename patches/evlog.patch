@@ -1,0 +1,42 @@
+diff --git a/dist/nitro/v3/module.mjs b/dist/nitro/v3/module.mjs
+index bfbc4debeead55ef986edbc9bab5a1603ef52552..c5f292a83a0e3c50dbd1bc3f849db0b263332b09 100644
+--- a/dist/nitro/v3/module.mjs
++++ b/dist/nitro/v3/module.mjs
+@@ -3,21 +3,22 @@ import { fileURLToPath } from "node:url";
+ //#region src/nitro-v3/module.ts
+ const _dir = dirname(fileURLToPath(import.meta.url));
+ function evlog(options) {
+-	return {
+-		name: "evlog",
+-		setup(nitro) {
+-			nitro.options.plugins = nitro.options.plugins || [];
+-			nitro.options.plugins.push(resolve(_dir, "plugin"));
+-			if (!nitro.options.noExternals) nitro.options.noExternals = ["evlog"];
+-			else if (Array.isArray(nitro.options.noExternals)) nitro.options.noExternals.push("evlog");
+-			if (!nitro.options.errorHandler) nitro.options.errorHandler = [resolve(_dir, "errorHandler")];
+-			else if (Array.isArray(nitro.options.errorHandler)) nitro.options.errorHandler.unshift(resolve(_dir, "errorHandler"));
+-			else if (typeof nitro.options.errorHandler === "string") nitro.options.errorHandler = [resolve(_dir, "errorHandler"), nitro.options.errorHandler];
+-			nitro.options.runtimeConfig = nitro.options.runtimeConfig || {};
+-			nitro.options.runtimeConfig.evlog = options || {};
+-			process.env.__EVLOG_CONFIG = JSON.stringify(options || {});
+-		}
+-	};
++  const ehP = resolve(_dir, "errorHandler.mjs").replace(/\\/g, "/")
++  return {
++    name: "evlog",
++    setup(nitro) {
++      nitro.options.plugins = nitro.options.plugins || [];
++      nitro.options.plugins.push(resolve(_dir, "plugin").replace(/\\/g, "/"));
++      if (!nitro.options.noExternals) nitro.options.noExternals = ["evlog"];
++      else if (Array.isArray(nitro.options.noExternals)) nitro.options.noExternals.push("evlog");
++      if (!nitro.options.errorHandler) nitro.options.errorHandler = [ehP];
++      else if (Array.isArray(nitro.options.errorHandler)) nitro.options.errorHandler.unshift(ehP);
++      else if (typeof nitro.options.errorHandler === "string") nitro.options.errorHandler = [ehP, nitro.options.errorHandler];
++      nitro.options.runtimeConfig = nitro.options.runtimeConfig || {};
++      nitro.options.runtimeConfig.evlog = options || {};
++      process.env.__EVLOG_CONFIG = JSON.stringify(options || {});
++    }
++  };
+ }
+ //#endregion
+ export { evlog as default };

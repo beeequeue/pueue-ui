@@ -1,5 +1,6 @@
 import unocss from "@unocss/vite"
 import vue from "@vitejs/plugin-vue"
+import evlog from "evlog/nitro/v3"
 import { nitro } from "nitro/vite"
 import sonda from "sonda/vite"
 import { defineConfig } from "vite"
@@ -30,7 +31,7 @@ export default defineConfig({
       openAPI: true,
     },
 
-    plugins: ["./server/plugins/evlog.ts"],
+    modules: [evlog()],
   },
 
   plugins: [

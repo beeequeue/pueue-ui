@@ -3,12 +3,12 @@
   "printWidth": 100,
   "semi": false,
   "embeddedLanguageFormatting": "auto",
-  "experimentalTailwindcss": {},
-  "experimentalSortImports": {
+  "sortTailwindcss": true,
+  "sortImports": {
     "type": "natural",
-    "internalPattern": ["^@/", "^~/", "^#[a-zA-Z0-9-]+/"],
+    "internalPattern": ["^[@~]|#[a-zA-Z0-9-]*/"],
     "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "unknown"]
   },
-  "experimentalSortPackageJson": false,
+  "sortPackageJson": false,
   "ignorePatterns": ["pnpm-lock.yaml"]
 }

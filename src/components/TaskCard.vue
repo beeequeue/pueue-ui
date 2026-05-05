@@ -32,16 +32,18 @@
 
 <script setup vapor lang="ts">
 import { computed } from "vue"
-import Tag from "./Tag.vue"
-import { getTaskEnd, getTaskStart, isTaskDone } from "../utils.ts"
-import Duration from "./Duration.vue"
-import Time from "./Time.vue"
+
 import type {
   Task,
   TaskResult,
   TaskStatusDone,
   TaskStatusName,
 } from "../../server/types/api.types.ts"
+import { getTaskEnd, getTaskStart, isTaskDone } from "../utils.ts"
+
+import Duration from "./Duration.vue"
+import Tag from "./Tag.vue"
+import Time from "./Time.vue"
 
 const { task } = defineProps<{ task: Task }>()
 const status = computed(() => task.status.type)
